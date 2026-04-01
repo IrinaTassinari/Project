@@ -2,6 +2,12 @@
 
 Responsive front-end project inspired by the Meetup website. The project is built with plain HTML, CSS, and JavaScript and includes a landing page plus a separate events page with client-side filtering.
 
+## Live Demo
+
+AWS deployment:
+
+http://63.179.163.24:5000/index.html
+
 ## Overview
 
 This project focuses on static front-end development and basic interactivity:
@@ -46,6 +52,9 @@ Events page with:
 - [WOW.js](https://wowjs.uk/)
 - Google Fonts
 - Google Maps Embed
+- Docker
+- Nginx
+- AWS
 
 ## Folder Structure
 
@@ -60,6 +69,7 @@ project/
 |-- styles/
 |   |-- style.css
 |   `-- styleMedia.css
+|-- Dockerfile
 |-- index.html
 |-- index2.html
 `-- README.md
@@ -78,10 +88,54 @@ project/
 
 No build step is required.
 
-1. Open the `project` folder in your editor.
-2. Start `index.html` in a browser.
+### Run locally
 
-For a better local workflow, run the project with VS Code Live Server.
+1. Open the project folder in your editor.
+2. Open `index.html` in your browser.
+
+For a better local workflow, you can use VS Code Live Server.
+
+## Run with Docker
+
+The project includes a simple `Dockerfile` based on `nginx:alpine`.
+
+### Build image
+
+```bash
+docker build -t meetup-clone .
+```
+
+### Run container
+
+```bash
+docker run -d -p 5000:80 --name meetup-clone-app meetup-clone
+```
+
+Then open:
+
+http://localhost:5000/index.html
+
+## Deployment
+
+The site is deployed on AWS and is available at:
+
+http://63.179.163.24:5000/index.html
+
+Deployment flow:
+
+1. Build the Docker image from the project root.
+2. Run the container with port mapping from the server to Nginx inside the container.
+3. Serve the static files through Nginx.
+
+## Dockerfile
+
+```dockerfile
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+EXPOSE 80
+```
+
+This configuration copies the project files into the default Nginx web root and serves the static website from port `80` inside the container.
 
 ## Notes
 
@@ -89,10 +143,4 @@ For a better local workflow, run the project with VS Code Live Server.
 - Event data for the events page is hardcoded in `scripts/script.js`.
 - The design is based on Meetup-inspired practice layout work.
 
-## Future Improvements
 
-- move event data into a separate JSON file
-- add validation for the modal form
-- improve accessibility and keyboard support
-- reduce duplicated markup between desktop and mobile sections
-- optimize images and normalize file naming
