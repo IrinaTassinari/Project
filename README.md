@@ -1,18 +1,18 @@
 # Meetup Clone
 
-Responsive front-end project inspired by the Meetup website. The project is built with plain HTML, CSS, and JavaScript and includes a landing page plus a separate events page with client-side filtering.
+Front-end project inspired by the Meetup website. The project is built with plain HTML, CSS, and JavaScript and includes a landing page plus a separate events page with client-side filtering.
 
 ## Live Demo
 
-AWS deployment:
+Vercel deployment:
 
-http://63.179.163.24:5000/index.html
+_Add the Vercel URL after deployment._
 
 ## Overview
 
 This project focuses on static front-end development and basic interactivity:
 
-- responsive layout for desktop and mobile
+- desktop layout with a separate mobile adaptation for narrow screens
 - two connected pages: home and events
 - event search and filter logic in vanilla JavaScript
 - dark/light theme toggle with `localStorage`
@@ -52,9 +52,7 @@ Events page with:
 - [WOW.js](https://wowjs.uk/)
 - Google Fonts
 - Google Maps Embed
-- Docker
-- Nginx
-- AWS
+- Vercel
 
 ## Folder Structure
 
@@ -69,7 +67,6 @@ project/
 |-- styles/
 |   |-- style.css
 |   `-- styleMedia.css
-|-- Dockerfile
 |-- index.html
 |-- index2.html
 `-- README.md
@@ -77,7 +74,7 @@ project/
 
 ## Features
 
-- responsive desktop and mobile versions
+- desktop version and a separate mobile version for narrow screens
 - event search by title or description
 - filtering by event type, distance, and category
 - persistent theme switching
@@ -95,52 +92,21 @@ No build step is required.
 
 For a better local workflow, you can use VS Code Live Server.
 
-## Run with Docker
-
-The project includes a simple `Dockerfile` based on `nginx:alpine`.
-
-### Build image
-
-```bash
-docker build -t meetup-clone .
-```
-
-### Run container
-
-```bash
-docker run -d -p 5000:80 --name meetup-clone-app meetup-clone
-```
-
-Then open:
-
-http://localhost:5000/index.html
-
 ## Deployment
 
-The site is deployed on AWS and is available at:
+The site can be deployed on Vercel as a static project.
 
-http://63.179.163.24:5000/index.html
+Recommended deployment flow:
 
-Deployment flow:
-
-1. Build the Docker image from the project root.
-2. Run the container with port mapping from the server to Nginx inside the container.
-3. Serve the static files through Nginx.
-
-## Dockerfile
-
-```dockerfile
-FROM nginx:alpine
-COPY . /usr/share/nginx/html
-EXPOSE 80
-```
-
-This configuration copies the project files into the default Nginx web root and serves the static website from port `80` inside the container.
+1. Import the GitHub repository into Vercel.
+2. Select `Other` as the framework preset.
+3. Leave the build command empty.
+4. Set the output directory to `.`.
+5. Deploy and add the generated URL to this README.
 
 ## Notes
 
 - The project uses external CDN resources, so an internet connection is required for fonts and animation libraries.
 - Event data for the events page is hardcoded in `scripts/script.js`.
+- The mobile styles are written mainly for narrow screens around 370-393px wide, not as a fully fluid layout for every viewport size.
 - The design is based on Meetup-inspired practice layout work.
-
-
