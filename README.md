@@ -4,9 +4,7 @@ Front-end project inspired by the Meetup website. The project is built with plai
 
 ## Live Demo
 
-Vercel deployment:
-
-_Add the Vercel URL after deployment._
+Live on Vercel: https://meetupclone-21kwgnqir-irinas-projects-44afd5ab.vercel.app/
 
 ## Overview
 
